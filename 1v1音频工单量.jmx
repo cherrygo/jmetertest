@@ -1,0 +1,538 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jmeterTestPlan version="1.2" properties="5.0" jmeter="5.0 r1840935">
+  <hashTree>
+    <TestPlan guiclass="TestPlanGui" testclass="TestPlan" testname="workOrderAnalysis" enabled="true">
+      <stringProp name="TestPlan.comments"></stringProp>
+      <boolProp name="TestPlan.functional_mode">false</boolProp>
+      <boolProp name="TestPlan.tearDown_on_shutdown">true</boolProp>
+      <boolProp name="TestPlan.serialize_threadgroups">false</boolProp>
+      <elementProp name="TestPlan.user_defined_variables" elementType="Arguments" guiclass="ArgumentsPanel" testclass="Arguments" testname="用户定义的变量" enabled="true">
+        <collectionProp name="Arguments.arguments"/>
+      </elementProp>
+      <stringProp name="TestPlan.user_define_classpath">D:\apache-jmeter-5.0\apache-jmeter-5.0\lib\poi-4.0.1.jar</stringProp>
+    </TestPlan>
+    <hashTree>
+      <ResultCollector guiclass="ViewResultsFullVisualizer" testclass="ResultCollector" testname="察看结果树" enabled="true">
+        <boolProp name="ResultCollector.error_logging">false</boolProp>
+        <objProp>
+          <name>saveConfig</name>
+          <value class="SampleSaveConfiguration">
+            <time>true</time>
+            <latency>true</latency>
+            <timestamp>true</timestamp>
+            <success>true</success>
+            <label>true</label>
+            <code>true</code>
+            <message>true</message>
+            <threadName>true</threadName>
+            <dataType>true</dataType>
+            <encoding>false</encoding>
+            <assertions>true</assertions>
+            <subresults>true</subresults>
+            <responseData>false</responseData>
+            <samplerData>false</samplerData>
+            <xml>false</xml>
+            <fieldNames>true</fieldNames>
+            <responseHeaders>false</responseHeaders>
+            <requestHeaders>false</requestHeaders>
+            <responseDataOnError>false</responseDataOnError>
+            <saveAssertionResultsFailureMessage>true</saveAssertionResultsFailureMessage>
+            <assertionsResultsToSave>0</assertionsResultsToSave>
+            <bytes>true</bytes>
+            <sentBytes>true</sentBytes>
+            <url>true</url>
+            <threadCounts>true</threadCounts>
+            <idleTime>true</idleTime>
+            <connectTime>true</connectTime>
+          </value>
+        </objProp>
+        <stringProp name="filename"></stringProp>
+      </ResultCollector>
+      <hashTree/>
+      <CSVDataSet guiclass="TestBeanGUI" testclass="CSVDataSet" testname="CSV 数据文件设置" enabled="true">
+        <stringProp name="filename">D:\apache-jmeter-5.0\apache-jmeter-5.0\bin\data3.txt</stringProp>
+        <stringProp name="fileEncoding"></stringProp>
+        <stringProp name="variableNames">startData,endData</stringProp>
+        <boolProp name="ignoreFirstLine">false</boolProp>
+        <stringProp name="delimiter">,</stringProp>
+        <boolProp name="quotedData">false</boolProp>
+        <boolProp name="recycle">true</boolProp>
+        <boolProp name="stopThread">false</boolProp>
+        <stringProp name="shareMode">shareMode.all</stringProp>
+      </CSVDataSet>
+      <hashTree/>
+      <BeanShellAssertion guiclass="BeanShellAssertionGui" testclass="BeanShellAssertion" testname="BeanShell断言" enabled="true">
+        <stringProp name="BeanShellAssertion.query">import java.text.*;
+import java.util.Date;
+import time;
+ 
+ String start_date = vars.get(&quot;startData&quot;);  
+ log.info(&quot;这是开始时间&quot;+start_date);
+ Date strdate = new SimpleDateFormat(&quot;yyyy/MM/dd HH:mm:ss&quot;).parse(start_date);
+ long unixTimestamp = strdate.getTime();
+ vars.put(&quot;st&quot;,unixTimestamp.toString());
+
+
+ 
+ String end_date = vars.get(&quot;endData&quot;); 
+ log.info(&quot;这是结束时间&quot;+end_date);  
+ Date endate = new SimpleDateFormat(&quot;yyyy/MM/dd HH:mm:ss&quot;).parse(end_date);
+ long unixTimestamp2 = endate.getTime();
+ vars.put(&quot;en&quot;,unixTimestamp2.toString());</stringProp>
+        <stringProp name="BeanShellAssertion.filename"></stringProp>
+        <stringProp name="BeanShellAssertion.parameters"></stringProp>
+        <boolProp name="BeanShellAssertion.resetInterpreter">false</boolProp>
+      </BeanShellAssertion>
+      <hashTree/>
+      <BeanShellAssertion guiclass="BeanShellAssertionGui" testclass="BeanShellAssertion" testname="BeanShell断言" enabled="true">
+        <stringProp name="BeanShellAssertion.query">import java.io.*;
+
+String strCtx2 =&quot;1对1正式课课量&quot; + &quot;, &quot; + &quot;1对1测评课课量&quot; + &quot;, &quot; + &quot;小班课正式课课量&quot; + &quot;, &quot; +&quot;小班课测评课课量&quot;+&quot;\n&quot;;
+log.info(&quot;写入数据是............................................：&quot;+strCtx2);
+FileWriter fileWriter = new FileWriter(&quot;C:\\test1.csv&quot;,true);
+BufferedWriter bufferedWriter = new BufferedWriter(fileWriter);
+bufferedWriter.write(strCtx2);
+bufferedWriter.close();
+fileWriter.close();</stringProp>
+        <stringProp name="BeanShellAssertion.filename"></stringProp>
+        <stringProp name="BeanShellAssertion.parameters"></stringProp>
+        <boolProp name="BeanShellAssertion.resetInterpreter">false</boolProp>
+      </BeanShellAssertion>
+      <hashTree/>
+      <ThreadGroup guiclass="ThreadGroupGui" testclass="ThreadGroup" testname="线程组" enabled="true">
+        <stringProp name="ThreadGroup.on_sample_error">continue</stringProp>
+        <elementProp name="ThreadGroup.main_controller" elementType="LoopController" guiclass="LoopControlPanel" testclass="LoopController" testname="循环控制器" enabled="true">
+          <boolProp name="LoopController.continue_forever">false</boolProp>
+          <stringProp name="LoopController.loops">1</stringProp>
+        </elementProp>
+        <stringProp name="ThreadGroup.num_threads">6</stringProp>
+        <stringProp name="ThreadGroup.ramp_time">1</stringProp>
+        <boolProp name="ThreadGroup.scheduler">false</boolProp>
+        <stringProp name="ThreadGroup.duration"></stringProp>
+        <stringProp name="ThreadGroup.delay"></stringProp>
+      </ThreadGroup>
+      <hashTree>
+        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="login" enabled="true">
+          <boolProp name="HTTPSampler.postBodyRaw">true</boolProp>
+          <elementProp name="HTTPsampler.Arguments" elementType="Arguments">
+            <collectionProp name="Arguments.arguments">
+              <elementProp name="" elementType="HTTPArgument">
+                <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                <stringProp name="Argument.value">{&quot;msg&quot;:&quot;Bb2GSlRjGbbw3F99mZ+D7STIrCdRFiaV0MaS23FzarsBzGi18LRUARnAar3ya0PlcwZDbiq9BVUj44xLmxWvZlaMDLHXzApBvoKQk2jlCPgOUFa07uPxBZJIZtNeaSKFbCDSVKCHeZbqbn919qbrAIQNARx1UGli5CNu+YYmt1s=&quot;}</stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+              </elementProp>
+            </collectionProp>
+          </elementProp>
+          <stringProp name="HTTPSampler.domain">chat.zmlearn.com</stringProp>
+          <stringProp name="HTTPSampler.port"></stringProp>
+          <stringProp name="HTTPSampler.protocol">http</stringProp>
+          <stringProp name="HTTPSampler.contentEncoding"></stringProp>
+          <stringProp name="HTTPSampler.path">/api/oauth/loginNew</stringProp>
+          <stringProp name="HTTPSampler.method">POST</stringProp>
+          <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+          <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
+          <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+          <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
+          <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
+          <stringProp name="HTTPSampler.connect_timeout"></stringProp>
+          <stringProp name="HTTPSampler.response_timeout"></stringProp>
+        </HTTPSamplerProxy>
+        <hashTree>
+          <JSONPostProcessor guiclass="JSONPostProcessorGui" testclass="JSONPostProcessor" testname="JSON提取器" enabled="true">
+            <stringProp name="JSONPostProcessor.referenceNames">getToken</stringProp>
+            <stringProp name="JSONPostProcessor.jsonPathExprs">$.data.accessToken</stringProp>
+            <stringProp name="JSONPostProcessor.match_numbers"></stringProp>
+          </JSONPostProcessor>
+          <hashTree/>
+        </hashTree>
+        <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP信息头管理器" enabled="true">
+          <collectionProp name="HeaderManager.headers">
+            <elementProp name="" elementType="Header">
+              <stringProp name="Header.name">content-type</stringProp>
+              <stringProp name="Header.value">application/json</stringProp>
+            </elementProp>
+            <elementProp name="" elementType="Header">
+              <stringProp name="Header.name">accesstoken</stringProp>
+              <stringProp name="Header.value">${getToken}</stringProp>
+            </elementProp>
+          </collectionProp>
+        </HeaderManager>
+        <hashTree/>
+        <ConstantTimer guiclass="ConstantTimerGui" testclass="ConstantTimer" testname="固定定时器" enabled="true">
+          <stringProp name="ConstantTimer.delay">3000</stringProp>
+        </ConstantTimer>
+        <hashTree/>
+        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="TotalCourses" enabled="true">
+          <boolProp name="HTTPSampler.postBodyRaw">true</boolProp>
+          <elementProp name="HTTPsampler.Arguments" elementType="Arguments">
+            <collectionProp name="Arguments.arguments">
+              <elementProp name="" elementType="HTTPArgument">
+                <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                <stringProp name="Argument.value">{&quot;endTime&quot;:${en},&quot;reportCategoryKey&quot;:&quot;ticketRateServiceImpl&quot;,&quot;reportType&quot;:&quot;day&quot;,&quot;startTime&quot;:${st},&quot;pageSize&quot;:10,&quot;pageNo&quot;:1}</stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+              </elementProp>
+            </collectionProp>
+          </elementProp>
+          <stringProp name="HTTPSampler.domain">chat.zmlearn.com</stringProp>
+          <stringProp name="HTTPSampler.port"></stringProp>
+          <stringProp name="HTTPSampler.protocol">http</stringProp>
+          <stringProp name="HTTPSampler.contentEncoding"></stringProp>
+          <stringProp name="HTTPSampler.path">/gateway/zmc-classmonitor-report/report/getReportList</stringProp>
+          <stringProp name="HTTPSampler.method">POST</stringProp>
+          <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+          <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
+          <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+          <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
+          <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
+          <stringProp name="HTTPSampler.connect_timeout"></stringProp>
+          <stringProp name="HTTPSampler.response_timeout"></stringProp>
+        </HTTPSamplerProxy>
+        <hashTree>
+          <JSONPostProcessor guiclass="JSONPostProcessorGui" testclass="JSONPostProcessor" testname="JSON提取器" enabled="true">
+            <stringProp name="JSONPostProcessor.referenceNames">lrlc</stringProp>
+            <stringProp name="JSONPostProcessor.jsonPathExprs">$.data.reportData.data[0].lesRegularCount</stringProp>
+            <stringProp name="JSONPostProcessor.match_numbers">1</stringProp>
+            <stringProp name="JSONPostProcessor.defaultValues">0</stringProp>
+          </JSONPostProcessor>
+          <hashTree/>
+          <JSONPostProcessor guiclass="JSONPostProcessorGui" testclass="JSONPostProcessor" testname="JSON提取器" enabled="true">
+            <stringProp name="JSONPostProcessor.referenceNames">ltrc</stringProp>
+            <stringProp name="JSONPostProcessor.jsonPathExprs">$.data.reportData.data[0].lesTestCount</stringProp>
+            <stringProp name="JSONPostProcessor.match_numbers"></stringProp>
+          </JSONPostProcessor>
+          <hashTree/>
+          <JSONPostProcessor guiclass="JSONPostProcessorGui" testclass="JSONPostProcessor" testname="JSON提取器" enabled="true">
+            <stringProp name="JSONPostProcessor.referenceNames">erlc</stringProp>
+            <stringProp name="JSONPostProcessor.jsonPathExprs">$.data.reportData.data[0].eduRegularCount</stringProp>
+            <stringProp name="JSONPostProcessor.match_numbers"></stringProp>
+          </JSONPostProcessor>
+          <hashTree/>
+          <JSONPostProcessor guiclass="JSONPostProcessorGui" testclass="JSONPostProcessor" testname="JSON提取器" enabled="true">
+            <stringProp name="JSONPostProcessor.referenceNames">etlc</stringProp>
+            <stringProp name="JSONPostProcessor.jsonPathExprs">$.data.reportData.data[0].eduTestCount</stringProp>
+            <stringProp name="JSONPostProcessor.match_numbers"></stringProp>
+          </JSONPostProcessor>
+          <hashTree/>
+          <BeanShellPostProcessor guiclass="TestBeanGUI" testclass="BeanShellPostProcessor" testname="BeanShell PostProcessor" enabled="false">
+            <stringProp name="filename"></stringProp>
+            <stringProp name="parameters"></stringProp>
+            <boolProp name="resetInterpreter">false</boolProp>
+            <stringProp name="script">import org.json.*;
+import java.lang.ref.SoftReference;
+import java.io.*;
+import org.apache.commons.codec;
+
+
+
+// 1对1正式课课程量
+data1 = vars.get(&quot;lrlc&quot;);
+log.info(&quot;当日1对1正式课课程量：-------&gt;&gt;&quot;+data1);
+FileWriter fileWriter = new FileWriter(&quot;C:\\test1.csv&quot;,true);
+BufferedWriter bufferedWriter = new BufferedWriter(fileWriter);
+bufferedWriter.write(vars.get(&quot;lrlc&quot;)+&quot;\n&quot;);
+log.info(&quot;写入数据是............................................：&quot;+vars.get(&quot;lrlc&quot;));
+bufferedWriter.close();
+fileWriter.close();
+
+//1对1测评课课量
+data2 = vars.get(&quot;ltrc&quot;);
+log.info(&quot;当日1对1测评课课程量：-------&gt;&gt;&quot;+data2);
+FileWriter fileWriter = new FileWriter(&quot;C:\\test1.csv&quot;,true);
+BufferedWriter bufferedWriter = new BufferedWriter(fileWriter);
+bufferedWriter.write(vars.get(&quot;ltrc&quot;)+&quot;\n&quot;);
+log.info(&quot;写入数据是............................................：&quot;+vars.get(&quot;ltrc&quot;));
+bufferedWriter.close();
+fileWriter.close();
+
+//小班课正式课课量
+data3 = vars.get(&quot;erlc&quot;);
+log.info(&quot;当日1对1测评课课程量：-------&gt;&gt;&quot;+data3);
+FileWriter fileWriter = new FileWriter(&quot;C:\\test1.csv&quot;,true);
+BufferedWriter bufferedWriter = new BufferedWriter(fileWriter);
+bufferedWriter.write(vars.get(&quot;erlc&quot;)+&quot;\n&quot;);
+log.info(&quot;写入数据是............................................：&quot;+vars.get(&quot;erlc&quot;));
+bufferedWriter.close();
+fileWriter.close();
+
+
+//小班课测评课课量
+data4 = vars.get(&quot;etlc&quot;);
+log.info(&quot;当日1对1测评课课程量：-------&gt;&gt;&quot;+data4);
+FileWriter fileWriter = new FileWriter(&quot;C:\\test1.csv&quot;,true);
+BufferedWriter bufferedWriter = new BufferedWriter(fileWriter);
+bufferedWriter.write(vars.get(&quot;etlc&quot;)+&quot;\n&quot;);
+log.info(&quot;写入数据是............................................：&quot;+vars.get(&quot;etlc&quot;));
+bufferedWriter.close();
+fileWriter.close();
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ </stringProp>
+          </BeanShellPostProcessor>
+          <hashTree/>
+          <BeanShellPostProcessor guiclass="TestBeanGUI" testclass="BeanShellPostProcessor" testname="BeanShell PostProcessor" enabled="true">
+            <boolProp name="resetInterpreter">false</boolProp>
+            <stringProp name="parameters"></stringProp>
+            <stringProp name="filename"></stringProp>
+            <stringProp name="script">import org.json.*;
+import java.lang.ref.SoftReference;
+import java.io.*;
+import org.apache.commons.codec;
+
+
+String strCtx =vars.get(&quot;lrlc&quot;) + &quot;, &quot; + vars.get(&quot;ltrc&quot;) + &quot;, &quot; + vars.get(&quot;erlc&quot;) + &quot;, &quot; + vars.get(&quot;etlc&quot;)+&quot;\n&quot;;
+log.info(&quot;写入数据是............................................：&quot;+strCtx);
+FileWriter fileWriter = new FileWriter(&quot;C:\\test1.csv&quot;,true);
+BufferedWriter bufferedWriter = new BufferedWriter(fileWriter);
+bufferedWriter.write(strCtx);
+bufferedWriter.close();
+fileWriter.close();</stringProp>
+          </BeanShellPostProcessor>
+          <hashTree/>
+        </hashTree>
+        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="OnevOneVoiceWorkOrder" enabled="true">
+          <boolProp name="HTTPSampler.postBodyRaw">true</boolProp>
+          <elementProp name="HTTPsampler.Arguments" elementType="Arguments">
+            <collectionProp name="Arguments.arguments">
+              <elementProp name="" elementType="HTTPArgument">
+                <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                <stringProp name="Argument.value">{&quot;access_token&quot;:&quot;ST-5107d4bfc6224f138dfe707170ecc562&quot;,&quot;firstCategoryId&quot;:null,&quot;secondCategoryId&quot;:null,&quot;categoryId&quot;:&quot;1&quot;,&quot;resultId&quot;:null,&quot;answerId&quot;:null,&quot;reResultId&quot;:null,&quot;reAnswerId&quot;:null,&quot;tUsername&quot;:null,&quot;sUsername&quot;:null,&quot;lessonUid&quot;:null,&quot;employeeId&quot;:null,&quot;score&quot;:null,&quot;tPlatformInfo&quot;:null,&quot;sPlatformInfo&quot;:null,&quot;tVersionInfo&quot;:null,&quot;sVersionInfo&quot;:null,&quot;channel&quot;:null,&quot;ticketId&quot;:null,&quot;ticketBu&quot;:1,&quot;lessonStart&quot;:${st},&quot;lessonEnd&quot;:${en},&quot;pageNo&quot;:1,&quot;pageSize&quot;:20,&quot;state&quot;:&quot;0&quot;,&quot;offset&quot;:null,&quot;limit&quot;:null,&quot;lessonCategory&quot;:null,&quot;coursewareType&quot;:null}</stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+              </elementProp>
+            </collectionProp>
+          </elementProp>
+          <stringProp name="HTTPSampler.domain">chat.zmlearn.com</stringProp>
+          <stringProp name="HTTPSampler.port"></stringProp>
+          <stringProp name="HTTPSampler.protocol">http</stringProp>
+          <stringProp name="HTTPSampler.contentEncoding"></stringProp>
+          <stringProp name="HTTPSampler.path">/gateway/zhangmen-client-wo/api/feedback/findTicketPageByQuery</stringProp>
+          <stringProp name="HTTPSampler.method">POST</stringProp>
+          <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+          <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
+          <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+          <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
+          <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
+          <stringProp name="HTTPSampler.connect_timeout"></stringProp>
+          <stringProp name="HTTPSampler.response_timeout"></stringProp>
+        </HTTPSamplerProxy>
+        <hashTree>
+          <JSONPostProcessor guiclass="JSONPostProcessorGui" testclass="JSONPostProcessor" testname="JSON提取器" enabled="true">
+            <stringProp name="JSONPostProcessor.referenceNames">OnevOneTotal</stringProp>
+            <stringProp name="JSONPostProcessor.jsonPathExprs">$.data.total</stringProp>
+            <stringProp name="JSONPostProcessor.match_numbers">1</stringProp>
+            <stringProp name="JSONPostProcessor.defaultValues">no</stringProp>
+          </JSONPostProcessor>
+          <hashTree/>
+          <BeanShellPostProcessor guiclass="TestBeanGUI" testclass="BeanShellPostProcessor" testname="BeanShell PostProcessor" enabled="false">
+            <stringProp name="filename"></stringProp>
+            <stringProp name="parameters"></stringProp>
+            <boolProp name="resetInterpreter">false</boolProp>
+            <stringProp name="script">import org.json.*;
+import java.lang.ref.SoftReference;
+import java.io.*;
+import org.apache.commons.codec;
+
+// 1对1正式课工单数
+data1 = vars.get(&quot;OnevOneTotal&quot;);
+log.info(&quot;当日1对1正式课工单数：-------&gt;&gt;&quot;+vars.get(&quot;OnevOneTotal&quot;));
+FileWriter fileWriter = new FileWriter(&quot;C:\\test1.csv&quot;,true);
+BufferedWriter bufferedWriter = new BufferedWriter(fileWriter);
+bufferedWriter.write(vars.get(&quot;OnevOneTotal&quot;)+&quot;\n&quot;);
+log.info(&quot;写入数据是............................................：&quot;+vars.get(&quot;OnevOneTotal&quot;));
+bufferedWriter.close();
+fileWriter.close();
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ </stringProp>
+          </BeanShellPostProcessor>
+          <hashTree/>
+        </hashTree>
+        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="OnevOneVoiceWorkOrder_test" enabled="false">
+          <boolProp name="HTTPSampler.postBodyRaw">true</boolProp>
+          <elementProp name="HTTPsampler.Arguments" elementType="Arguments">
+            <collectionProp name="Arguments.arguments">
+              <elementProp name="" elementType="HTTPArgument">
+                <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                <stringProp name="Argument.value">{&quot;access_token&quot;:&quot;${getToken}&quot;,&quot;firstCategoryId&quot;:null,&quot;secondCategoryId&quot;:null,&quot;categoryId&quot;:&quot;1&quot;,&quot;resultId&quot;:null,&quot;answerId&quot;:null,&quot;reResultId&quot;:null,&quot;reAnswerId&quot;:null,&quot;tUsername&quot;:null,&quot;sUsername&quot;:null,&quot;lessonUid&quot;:null,&quot;employeeId&quot;:null,&quot;score&quot;:null,&quot;tPlatformInfo&quot;:null,&quot;sPlatformInfo&quot;:null,&quot;tVersionInfo&quot;:null,&quot;sVersionInfo&quot;:null,&quot;channel&quot;:null,&quot;ticketId&quot;:null,&quot;ticketBu&quot;:1,&quot;lessonStart&quot;:1552406400000,&quot;lessonEnd&quot;:1552492799512,&quot;pageNo&quot;:1,&quot;pageSize&quot;:20,&quot;state&quot;:&quot;0&quot;,&quot;offset&quot;:null,&quot;limit&quot;:null,&quot;lessonCategory&quot;:&quot;test-lesson&quot;,&quot;coursewareType&quot;:null}</stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+              </elementProp>
+            </collectionProp>
+          </elementProp>
+          <stringProp name="HTTPSampler.domain">chat.zmlearn.com</stringProp>
+          <stringProp name="HTTPSampler.port"></stringProp>
+          <stringProp name="HTTPSampler.protocol">http</stringProp>
+          <stringProp name="HTTPSampler.contentEncoding"></stringProp>
+          <stringProp name="HTTPSampler.path">/gateway/zhangmen-client-wo/api/feedback/findTicketPageByQuery</stringProp>
+          <stringProp name="HTTPSampler.method">POST</stringProp>
+          <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+          <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
+          <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+          <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
+          <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
+          <stringProp name="HTTPSampler.connect_timeout"></stringProp>
+          <stringProp name="HTTPSampler.response_timeout"></stringProp>
+        </HTTPSamplerProxy>
+        <hashTree>
+          <JSONPostProcessor guiclass="JSONPostProcessorGui" testclass="JSONPostProcessor" testname="JSON提取器" enabled="false">
+            <stringProp name="JSONPostProcessor.referenceNames">OnevOneTotal_test</stringProp>
+            <stringProp name="JSONPostProcessor.jsonPathExprs">$.data.total</stringProp>
+            <stringProp name="JSONPostProcessor.match_numbers">1</stringProp>
+            <stringProp name="JSONPostProcessor.defaultValues">no</stringProp>
+          </JSONPostProcessor>
+          <hashTree/>
+        </hashTree>
+        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname=" privateClassVoiceWorkOrder" enabled="false">
+          <boolProp name="HTTPSampler.postBodyRaw">true</boolProp>
+          <elementProp name="HTTPsampler.Arguments" elementType="Arguments">
+            <collectionProp name="Arguments.arguments">
+              <elementProp name="" elementType="HTTPArgument">
+                <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                <stringProp name="Argument.value">{&quot;access_token&quot;:&quot;${getToken}&quot;,&quot;firstCategoryId&quot;:null,&quot;secondCategoryId&quot;:null,&quot;categoryId&quot;:&quot;1&quot;,&quot;resultId&quot;:null,&quot;answerId&quot;:null,&quot;reResultId&quot;:null,&quot;reAnswerId&quot;:null,&quot;tUsername&quot;:null,&quot;sUsername&quot;:null,&quot;lessonUid&quot;:null,&quot;employeeId&quot;:null,&quot;score&quot;:null,&quot;tPlatformInfo&quot;:null,&quot;sPlatformInfo&quot;:null,&quot;tVersionInfo&quot;:null,&quot;sVersionInfo&quot;:null,&quot;channel&quot;:null,&quot;ticketId&quot;:null,&quot;ticketBu&quot;:2,&quot;lessonStart&quot;:1552406400000,&quot;lessonEnd&quot;:1552492799999,&quot;pageNo&quot;:1,&quot;pageSize&quot;:20,&quot;state&quot;:&quot;0&quot;,&quot;offset&quot;:null,&quot;limit&quot;:null,&quot;lessonCategory&quot;:null,&quot;coursewareType&quot;:null}</stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+              </elementProp>
+            </collectionProp>
+          </elementProp>
+          <stringProp name="HTTPSampler.domain">chat.zmlearn.com</stringProp>
+          <stringProp name="HTTPSampler.port"></stringProp>
+          <stringProp name="HTTPSampler.protocol">http</stringProp>
+          <stringProp name="HTTPSampler.contentEncoding"></stringProp>
+          <stringProp name="HTTPSampler.path">/gateway/zhangmen-client-wo/api/feedback/findTicketPageByQuery</stringProp>
+          <stringProp name="HTTPSampler.method">POST</stringProp>
+          <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+          <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
+          <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+          <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
+          <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
+          <stringProp name="HTTPSampler.connect_timeout"></stringProp>
+          <stringProp name="HTTPSampler.response_timeout"></stringProp>
+        </HTTPSamplerProxy>
+        <hashTree>
+          <JSONPostProcessor guiclass="JSONPostProcessorGui" testclass="JSONPostProcessor" testname="JSON提取器" enabled="false">
+            <stringProp name="JSONPostProcessor.referenceNames">privateClassTotal</stringProp>
+            <stringProp name="JSONPostProcessor.jsonPathExprs">$.data.total</stringProp>
+            <stringProp name="JSONPostProcessor.match_numbers">1</stringProp>
+            <stringProp name="JSONPostProcessor.defaultValues">no</stringProp>
+          </JSONPostProcessor>
+          <hashTree/>
+        </hashTree>
+        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname=" privateClassVoiceWorkOrder_test" enabled="false">
+          <boolProp name="HTTPSampler.postBodyRaw">true</boolProp>
+          <elementProp name="HTTPsampler.Arguments" elementType="Arguments">
+            <collectionProp name="Arguments.arguments">
+              <elementProp name="" elementType="HTTPArgument">
+                <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                <stringProp name="Argument.value">{&quot;access_token&quot;:&quot;${getToken}&quot;,&quot;firstCategoryId&quot;:null,&quot;secondCategoryId&quot;:null,&quot;categoryId&quot;:&quot;1&quot;,&quot;resultId&quot;:null,&quot;answerId&quot;:null,&quot;reResultId&quot;:null,&quot;reAnswerId&quot;:null,&quot;tUsername&quot;:null,&quot;sUsername&quot;:null,&quot;lessonUid&quot;:null,&quot;employeeId&quot;:null,&quot;score&quot;:null,&quot;tPlatformInfo&quot;:null,&quot;sPlatformInfo&quot;:null,&quot;tVersionInfo&quot;:null,&quot;sVersionInfo&quot;:null,&quot;channel&quot;:null,&quot;ticketId&quot;:null,&quot;ticketBu&quot;:2,&quot;lessonStart&quot;:1552406400000,&quot;lessonEnd&quot;:1552492799512,&quot;pageNo&quot;:1,&quot;pageSize&quot;:20,&quot;state&quot;:&quot;0&quot;,&quot;offset&quot;:null,&quot;limit&quot;:null,&quot;lessonCategory&quot;:&quot;test-lesson&quot;,&quot;coursewareType&quot;:null}</stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+              </elementProp>
+            </collectionProp>
+          </elementProp>
+          <stringProp name="HTTPSampler.domain">chat.zmlearn.com</stringProp>
+          <stringProp name="HTTPSampler.port"></stringProp>
+          <stringProp name="HTTPSampler.protocol">http</stringProp>
+          <stringProp name="HTTPSampler.contentEncoding"></stringProp>
+          <stringProp name="HTTPSampler.path">/gateway/zhangmen-client-wo/api/feedback/findTicketPageByQuery</stringProp>
+          <stringProp name="HTTPSampler.method">POST</stringProp>
+          <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+          <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
+          <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+          <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
+          <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
+          <stringProp name="HTTPSampler.connect_timeout"></stringProp>
+          <stringProp name="HTTPSampler.response_timeout"></stringProp>
+        </HTTPSamplerProxy>
+        <hashTree>
+          <JSONPostProcessor guiclass="JSONPostProcessorGui" testclass="JSONPostProcessor" testname="JSON提取器" enabled="false">
+            <stringProp name="JSONPostProcessor.referenceNames">privateClassTotal_test</stringProp>
+            <stringProp name="JSONPostProcessor.jsonPathExprs">$.data.total</stringProp>
+            <stringProp name="JSONPostProcessor.match_numbers">1</stringProp>
+            <stringProp name="JSONPostProcessor.defaultValues">no</stringProp>
+          </JSONPostProcessor>
+          <hashTree/>
+        </hashTree>
+        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="ViewSession" enabled="false">
+          <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" testname="用户定义的变量" enabled="true">
+            <collectionProp name="Arguments.arguments">
+              <elementProp name="access_token" elementType="HTTPArgument">
+                <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                <stringProp name="Argument.value">ST-97cfee22facb4e5ba9e7ad5de1da569a</stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+                <boolProp name="HTTPArgument.use_equals">true</boolProp>
+                <stringProp name="Argument.name">access_token</stringProp>
+              </elementProp>
+              <elementProp name="ticketId" elementType="HTTPArgument">
+                <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                <stringProp name="Argument.value">1006952</stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+                <boolProp name="HTTPArgument.use_equals">true</boolProp>
+                <stringProp name="Argument.name">ticketId</stringProp>
+              </elementProp>
+              <elementProp name="pageSize" elementType="HTTPArgument">
+                <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                <stringProp name="Argument.value">20</stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+                <boolProp name="HTTPArgument.use_equals">true</boolProp>
+                <stringProp name="Argument.name">pageSize</stringProp>
+              </elementProp>
+              <elementProp name="pageNo" elementType="HTTPArgument">
+                <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                <stringProp name="Argument.value">1</stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+                <boolProp name="HTTPArgument.use_equals">true</boolProp>
+                <stringProp name="Argument.name">pageNo</stringProp>
+              </elementProp>
+            </collectionProp>
+          </elementProp>
+          <stringProp name="HTTPSampler.domain">workorder.zmlearn.com</stringProp>
+          <stringProp name="HTTPSampler.port"></stringProp>
+          <stringProp name="HTTPSampler.protocol">https</stringProp>
+          <stringProp name="HTTPSampler.contentEncoding"></stringProp>
+          <stringProp name="HTTPSampler.path">/api/feedback/getSessionPage</stringProp>
+          <stringProp name="HTTPSampler.method">POST</stringProp>
+          <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+          <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
+          <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+          <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
+          <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
+          <stringProp name="HTTPSampler.connect_timeout"></stringProp>
+          <stringProp name="HTTPSampler.response_timeout"></stringProp>
+        </HTTPSamplerProxy>
+        <hashTree/>
+        <DebugSampler guiclass="TestBeanGUI" testclass="DebugSampler" testname="Debug Sampler" enabled="false">
+          <boolProp name="displayJMeterProperties">false</boolProp>
+          <boolProp name="displayJMeterVariables">true</boolProp>
+          <boolProp name="displaySystemProperties">false</boolProp>
+        </DebugSampler>
+        <hashTree/>
+      </hashTree>
+    </hashTree>
+  </hashTree>
+</jmeterTestPlan>

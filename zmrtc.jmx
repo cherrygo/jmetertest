@@ -1,0 +1,363 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jmeterTestPlan version="1.2" properties="5.0" jmeter="5.0 r1840935">
+  <hashTree>
+    <TestPlan guiclass="TestPlanGui" testclass="TestPlan" testname="测试计划" enabled="true">
+      <stringProp name="TestPlan.comments"></stringProp>
+      <boolProp name="TestPlan.functional_mode">false</boolProp>
+      <boolProp name="TestPlan.tearDown_on_shutdown">true</boolProp>
+      <boolProp name="TestPlan.serialize_threadgroups">false</boolProp>
+      <elementProp name="TestPlan.user_defined_variables" elementType="Arguments" guiclass="ArgumentsPanel" testclass="Arguments" testname="用户定义的变量" enabled="true">
+        <collectionProp name="Arguments.arguments"/>
+      </elementProp>
+      <stringProp name="TestPlan.user_define_classpath">D:\apache-jmeter-5.0\apache-jmeter-5.0\lib\ext\JMeterPlugins-Standard.jar,D:\apache-jmeter-5.0\apache-jmeter-5.0\lib\ext\commons-lang3-3.3.2.jar,D:\apache-jmeter-5.0\apache-jmeter-5.0\lib\ext\commons-codec-1.10.jar,D:\apache-jmeter-5.0\apache-jmeter-5.0\lib\ext\commons-codec-1.11.jar,D:\apache-jmeter-5.0\apache-jmeter-5.0\lib\ext\jetty-http-9.1.2.v20140210.jar,D:\apache-jmeter-5.0\apache-jmeter-5.0\lib\ext\jetty-io-9.1.2.v20140210.jar,D:\apache-jmeter-5.0\apache-jmeter-5.0\lib\ext\jetty-util-9.1.2.v20140210.jar,D:\apache-jmeter-5.0\apache-jmeter-5.0\lib\ext\websocket-api-9.1.1.v20140108.jar,D:\apache-jmeter-5.0\apache-jmeter-5.0\lib\ext\websocket-client-9.1.1.v20140108.jar,D:\apache-jmeter-5.0\apache-jmeter-5.0\lib\ext\websocket-common-9.1.1.v20140108.jar,D:\apache-jmeter-5.0\apache-jmeter-5.0\lib\ext\JMeterPlugins-Standard.jar,D:\apache-jmeter-5.0\apache-jmeter-5.0\lib\ext\JMeterPlugins-Extras.jar,D:\apache-jmeter-5.0\apache-jmeter-5.0\lib,D:\apache-jmeter-5.0\apache-jmeter-5.0\lib\ext\JMeterWebSocketSampler-1.0.2-SNAPSHOT_60.jar,D:\apache-jmeter-5.0\apache-jmeter-5.0\lib\ext\jmeter-websocket-samplers-1.2.1.jar,D:\apache-jmeter-5.0\apache-jmeter-5.0\lib\ext\gmongo-1.5.jar,D:\apache-jmeter-5.0\apache-jmeter-5.0\lib\ext\mongodb-driver-3.4.0-rc1.jar,D:\apache-jmeter-5.0\apache-jmeter-5.0\lib\ext\mongo-java-driver-3.4.0-rc1.jar,D:\apache-jmeter-5.0\apache-jmeter-5.0\lib\ext\bson-3.9.1.jar,D:\apache-jmeter-5.0\apache-jmeter-5.0\lib\ext\mongodb-driver-core-3.9.1.jar</stringProp>
+    </TestPlan>
+    <hashTree>
+      <ResultCollector guiclass="ViewResultsFullVisualizer" testclass="ResultCollector" testname="察看结果树" enabled="true">
+        <boolProp name="ResultCollector.error_logging">false</boolProp>
+        <objProp>
+          <name>saveConfig</name>
+          <value class="SampleSaveConfiguration">
+            <time>true</time>
+            <latency>true</latency>
+            <timestamp>true</timestamp>
+            <success>true</success>
+            <label>true</label>
+            <code>true</code>
+            <message>true</message>
+            <threadName>true</threadName>
+            <dataType>true</dataType>
+            <encoding>false</encoding>
+            <assertions>true</assertions>
+            <subresults>true</subresults>
+            <responseData>false</responseData>
+            <samplerData>false</samplerData>
+            <xml>false</xml>
+            <fieldNames>true</fieldNames>
+            <responseHeaders>false</responseHeaders>
+            <requestHeaders>false</requestHeaders>
+            <responseDataOnError>false</responseDataOnError>
+            <saveAssertionResultsFailureMessage>true</saveAssertionResultsFailureMessage>
+            <assertionsResultsToSave>0</assertionsResultsToSave>
+            <bytes>true</bytes>
+            <sentBytes>true</sentBytes>
+            <url>true</url>
+            <threadCounts>true</threadCounts>
+            <idleTime>true</idleTime>
+            <connectTime>true</connectTime>
+          </value>
+        </objProp>
+        <stringProp name="filename"></stringProp>
+      </ResultCollector>
+      <hashTree/>
+      <ResultCollector guiclass="StatVisualizer" testclass="ResultCollector" testname="聚合报告" enabled="true">
+        <boolProp name="ResultCollector.error_logging">false</boolProp>
+        <objProp>
+          <name>saveConfig</name>
+          <value class="SampleSaveConfiguration">
+            <time>true</time>
+            <latency>true</latency>
+            <timestamp>true</timestamp>
+            <success>true</success>
+            <label>true</label>
+            <code>true</code>
+            <message>true</message>
+            <threadName>true</threadName>
+            <dataType>true</dataType>
+            <encoding>false</encoding>
+            <assertions>true</assertions>
+            <subresults>true</subresults>
+            <responseData>false</responseData>
+            <samplerData>false</samplerData>
+            <xml>false</xml>
+            <fieldNames>true</fieldNames>
+            <responseHeaders>false</responseHeaders>
+            <requestHeaders>false</requestHeaders>
+            <responseDataOnError>false</responseDataOnError>
+            <saveAssertionResultsFailureMessage>true</saveAssertionResultsFailureMessage>
+            <assertionsResultsToSave>0</assertionsResultsToSave>
+            <bytes>true</bytes>
+            <sentBytes>true</sentBytes>
+            <url>true</url>
+            <threadCounts>true</threadCounts>
+            <idleTime>true</idleTime>
+            <connectTime>true</connectTime>
+          </value>
+        </objProp>
+        <stringProp name="filename">D:\apache-jmeter-5.0\apache-jmeter-5.0\bin\result.jtl</stringProp>
+      </ResultCollector>
+      <hashTree/>
+      <CSVDataSet guiclass="TestBeanGUI" testclass="CSVDataSet" testname="CSV 数据文件设置" enabled="true">
+        <stringProp name="delimiter"></stringProp>
+        <stringProp name="fileEncoding">UTF-8</stringProp>
+        <stringProp name="filename">D:/apache-jmeter-5.0/apache-jmeter-5.0/bin/room1500-4500.csv</stringProp>
+        <boolProp name="ignoreFirstLine">false</boolProp>
+        <boolProp name="quotedData">false</boolProp>
+        <boolProp name="recycle">true</boolProp>
+        <stringProp name="shareMode">shareMode.all</stringProp>
+        <boolProp name="stopThread">false</boolProp>
+        <stringProp name="variableNames">room</stringProp>
+      </CSVDataSet>
+      <hashTree/>
+      <CSVDataSet guiclass="TestBeanGUI" testclass="CSVDataSet" testname="CSV 数据文件设置" enabled="false">
+        <stringProp name="filename">E:\123.csv</stringProp>
+        <stringProp name="fileEncoding">UTF-8</stringProp>
+        <stringProp name="variableNames">tokenId,host,secure,signature</stringProp>
+        <boolProp name="ignoreFirstLine">false</boolProp>
+        <stringProp name="delimiter">,</stringProp>
+        <boolProp name="quotedData">false</boolProp>
+        <boolProp name="recycle">true</boolProp>
+        <boolProp name="stopThread">false</boolProp>
+        <stringProp name="shareMode">shareMode.all</stringProp>
+      </CSVDataSet>
+      <hashTree/>
+      <ConstantTimer guiclass="ConstantTimerGui" testclass="ConstantTimer" testname="固定定时器" enabled="false">
+        <stringProp name="ConstantTimer.delay">5000</stringProp>
+      </ConstantTimer>
+      <hashTree/>
+      <ThreadGroup guiclass="ThreadGroupGui" testclass="ThreadGroup" testname="A单个用户加入房间NEW" enabled="true">
+        <stringProp name="ThreadGroup.on_sample_error">continue</stringProp>
+        <elementProp name="ThreadGroup.main_controller" elementType="LoopController" guiclass="LoopControlPanel" testclass="LoopController" testname="循环控制器" enabled="true">
+          <boolProp name="LoopController.continue_forever">false</boolProp>
+          <stringProp name="LoopController.loops">1</stringProp>
+        </elementProp>
+        <stringProp name="ThreadGroup.num_threads">1</stringProp>
+        <stringProp name="ThreadGroup.ramp_time">1</stringProp>
+        <boolProp name="ThreadGroup.scheduler">false</boolProp>
+        <stringProp name="ThreadGroup.duration"></stringProp>
+        <stringProp name="ThreadGroup.delay"></stringProp>
+      </ThreadGroup>
+      <hashTree>
+        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="请求创建房间" enabled="false">
+          <boolProp name="HTTPSampler.postBodyRaw">true</boolProp>
+          <elementProp name="HTTPsampler.Arguments" elementType="Arguments">
+            <collectionProp name="Arguments.arguments">
+              <elementProp name="" elementType="HTTPArgument">
+                <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                <stringProp name="Argument.value">{&#xd;
+	&quot;duration&quot;: 1800,&#xd;
+	&quot;meta&quot;: &quot;Hi man, This is a describe information!&quot;,&#xd;
+	&quot;platform&quot;: &quot;windows&quot;,&#xd;
+	&quot;role&quot;: &quot;presenter&quot;,&#xd;
+	&quot;room&quot;: &quot;${room}&quot;,&#xd;
+	&quot;type&quot;: &quot;erizo&quot;,&#xd;
+	&quot;uid&quot;: &quot;${__Random(0,999,user_id)}&quot;,&#xd;
+	&quot;username&quot;: &quot;100002899&quot;,&#xd;
+	&quot;version&quot;: &quot;demo1.1.1&quot;,&#xd;
+	&quot;zmRole&quot;: &quot;student&quot;,&#xd;
+	&quot;zmRoomType&quot;: &quot;TYPE_ONE2ONE_LESSON&quot;&#xd;
+}</stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+              </elementProp>
+            </collectionProp>
+          </elementProp>
+          <stringProp name="HTTPSampler.domain">web-webrtc.zmaxis.com</stringProp>
+          <stringProp name="HTTPSampler.port">3004</stringProp>
+          <stringProp name="HTTPSampler.protocol">https</stringProp>
+          <stringProp name="HTTPSampler.contentEncoding">UTF-8</stringProp>
+          <stringProp name="HTTPSampler.path">/createToken/</stringProp>
+          <stringProp name="HTTPSampler.method">POST</stringProp>
+          <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+          <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
+          <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+          <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
+          <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
+          <stringProp name="HTTPSampler.connect_timeout"></stringProp>
+          <stringProp name="HTTPSampler.response_timeout"></stringProp>
+        </HTTPSamplerProxy>
+        <hashTree>
+          <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP信息头管理器" enabled="false">
+            <collectionProp name="HeaderManager.headers">
+              <elementProp name="" elementType="Header">
+                <stringProp name="Header.name">content-type</stringProp>
+                <stringProp name="Header.value">application/json</stringProp>
+              </elementProp>
+            </collectionProp>
+          </HeaderManager>
+          <hashTree/>
+          <RegexExtractor guiclass="RegexExtractorGui" testclass="RegexExtractor" testname="正则表达式提取器" enabled="false">
+            <stringProp name="RegexExtractor.useHeaders">false</stringProp>
+            <stringProp name="RegexExtractor.refname">resp_str</stringProp>
+            <stringProp name="RegexExtractor.regex">^(.*?)$</stringProp>
+            <stringProp name="RegexExtractor.template">$1$</stringProp>
+            <stringProp name="RegexExtractor.default"></stringProp>
+            <stringProp name="RegexExtractor.match_number">1</stringProp>
+            <boolProp name="RegexExtractor.default_empty_value">true</boolProp>
+          </RegexExtractor>
+          <hashTree/>
+          <BeanShellPostProcessor guiclass="TestBeanGUI" testclass="BeanShellPostProcessor" testname="BeanShell Post解密" enabled="false">
+            <boolProp name="resetInterpreter">false</boolProp>
+            <stringProp name="parameters"></stringProp>
+            <stringProp name="filename"></stringProp>
+            <stringProp name="script">import org.json.*;
+import java.lang.ref.SoftReference;
+import java.io.*;
+import org.apache.commons.codec;
+import sun.mise.BASE64Decoder;
+
+resp_data = vars.get(&quot;resp_str&quot;);
+log.info(&quot;加密方法的响应值-------&gt;&gt;&quot;+resp_data);
+log.info(&quot;-----开始解密-----&quot;);
+org.apache.commons.codec.binary.Base64 base64 = new org.apache.commons.codec.binary.Base64();
+String s = new String(base64.decode(resp_data));
+log.info(&quot;解密后的值：&quot;+s);
+log.info(&quot;-----解密结束------&quot;);
+vars.put(&quot;s&quot;,s);
+
+//将返回数据写入csv文件
+FileWriter fileWriter=new FileWriter(&quot;E:\\123.csv&quot;,true);
+BufferedWriter bufferedWriter=new BufferedWriter(fileWriter);
+bufferedWriter.write(vars.get(&quot;s&quot;)+&quot;\n&quot;);
+log.info(&quot;写入数据是：&quot;+vars.get(&quot;s&quot;));
+bufferedWriter.close();
+fileWriter.close();
+</stringProp>
+          </BeanShellPostProcessor>
+          <hashTree/>
+        </hashTree>
+        <JMeter.plugins.functional.samplers.websocket.WebSocketSampler guiclass="JMeter.plugins.functional.samplers.websocket.WebSocketSamplerGui" testclass="JMeter.plugins.functional.samplers.websocket.WebSocketSampler" testname="连接信令" enabled="true">
+          <stringProp name="serverAddress">controller-webrtc.zmaxis.com</stringProp>
+          <stringProp name="serverPort">8080</stringProp>
+          <stringProp name="implementation">RFC6455 (v13)</stringProp>
+          <stringProp name="protocol">wss</stringProp>
+          <stringProp name="contextPath">/socket.io/?EIO=3&amp;transport=websocket</stringProp>
+          <stringProp name="contentEncoding">UTF-8</stringProp>
+          <stringProp name="requestPayload"></stringProp>
+          <stringProp name="connectionTimeout">5000</stringProp>
+          <stringProp name="responseTimeout">20000</stringProp>
+          <boolProp name="ignoreSslErrors">false</boolProp>
+          <boolProp name="streamingConnection">true</boolProp>
+          <stringProp name="connectionId"></stringProp>
+          <stringProp name="responsePattern"></stringProp>
+          <stringProp name="closeConncectionPattern"></stringProp>
+          <stringProp name="proxyAddress"></stringProp>
+          <stringProp name="proxyPassword"></stringProp>
+          <stringProp name="proxyPort"></stringProp>
+          <stringProp name="proxyUsername"></stringProp>
+          <stringProp name="messageBacklog">1</stringProp>
+          <elementProp name="queryStringParameters" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" testname="用户定义的变量" enabled="true">
+            <collectionProp name="Arguments.arguments"/>
+          </elementProp>
+        </JMeter.plugins.functional.samplers.websocket.WebSocketSampler>
+        <hashTree>
+          <RegexExtractor guiclass="RegexExtractorGui" testclass="RegexExtractor" testname="正则表达式提取器" enabled="false">
+            <stringProp name="RegexExtractor.useHeaders">false</stringProp>
+            <stringProp name="RegexExtractor.refname">sid</stringProp>
+            <stringProp name="RegexExtractor.regex">&quot;sid&quot;:&quot;(\S+?)&quot;</stringProp>
+            <stringProp name="RegexExtractor.template">$1$</stringProp>
+            <stringProp name="RegexExtractor.default"></stringProp>
+            <stringProp name="RegexExtractor.match_number">1</stringProp>
+            <boolProp name="RegexExtractor.default_empty_value">true</boolProp>
+          </RegexExtractor>
+          <hashTree/>
+        </hashTree>
+        <JMeter.plugins.functional.samplers.websocket.WebSocketSampler guiclass="JMeter.plugins.functional.samplers.websocket.WebSocketSamplerGui" testclass="JMeter.plugins.functional.samplers.websocket.WebSocketSampler" testname="获取信令结果" enabled="true">
+          <stringProp name="serverAddress">controller-webrtc.zmaxis.com</stringProp>
+          <stringProp name="serverPort">8080</stringProp>
+          <stringProp name="implementation">RFC6455 (v13)</stringProp>
+          <stringProp name="protocol">wss</stringProp>
+          <stringProp name="contextPath">/socket.io/?EIO=3&amp;transport=websocket&amp;sid=${sid}</stringProp>
+          <stringProp name="contentEncoding">UTF-8</stringProp>
+          <stringProp name="requestPayload">421[&quot;token&quot;,${tokenId},${host},${secure},${signature}]</stringProp>
+          <stringProp name="connectionTimeout">5000</stringProp>
+          <stringProp name="responseTimeout">20000</stringProp>
+          <boolProp name="ignoreSslErrors">false</boolProp>
+          <boolProp name="streamingConnection">true</boolProp>
+          <stringProp name="connectionId"></stringProp>
+          <stringProp name="responsePattern"></stringProp>
+          <stringProp name="closeConncectionPattern"></stringProp>
+          <stringProp name="proxyAddress"></stringProp>
+          <stringProp name="proxyPassword"></stringProp>
+          <stringProp name="proxyPort"></stringProp>
+          <stringProp name="proxyUsername"></stringProp>
+          <stringProp name="messageBacklog">1</stringProp>
+          <elementProp name="queryStringParameters" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" testname="用户定义的变量" enabled="true">
+            <collectionProp name="Arguments.arguments"/>
+          </elementProp>
+        </JMeter.plugins.functional.samplers.websocket.WebSocketSampler>
+        <hashTree/>
+      </hashTree>
+      <ThreadGroup guiclass="ThreadGroupGui" testclass="ThreadGroup" testname="mongo" enabled="true">
+        <stringProp name="ThreadGroup.on_sample_error">continue</stringProp>
+        <elementProp name="ThreadGroup.main_controller" elementType="LoopController" guiclass="LoopControlPanel" testclass="LoopController" testname="循环控制器" enabled="true">
+          <boolProp name="LoopController.continue_forever">false</boolProp>
+          <stringProp name="LoopController.loops">1</stringProp>
+        </elementProp>
+        <stringProp name="ThreadGroup.num_threads">1</stringProp>
+        <stringProp name="ThreadGroup.ramp_time">1</stringProp>
+        <boolProp name="ThreadGroup.scheduler">false</boolProp>
+        <stringProp name="ThreadGroup.duration"></stringProp>
+        <stringProp name="ThreadGroup.delay"></stringProp>
+      </ThreadGroup>
+      <hashTree>
+        <JSR223Sampler guiclass="TestBeanGUI" testclass="JSR223Sampler" testname="JSR223 Sampler" enabled="true">
+          <stringProp name="cacheKey">true</stringProp>
+          <stringProp name="filename"></stringProp>
+          <stringProp name="parameters"></stringProp>
+          <stringProp name="script">import com.mongodb.*;
+import java.util.List;
+import java.util.ArrayList;
+import com.mongodb.MongoCredential;
+import com.gmongo.GMongoClient;
+import com.mongodb.ServerAddress;
+//import com.mongodb.dbobject;
+//import com.mongodb.writeconcern;
+//import com.mongodb.dbencoder 
+
+ServerAddress serverAddress = new ServerAddress(&quot;172.18.201.215&quot;, 27017);
+List&lt;ServerAddress&gt; addrs = new ArrayList&lt;ServerAddress&gt;();
+addrs.add(serverAddress);
+MongoClient mongoClient = new MongoClient(addrs);
+DB db = mongoClient.getDB(&quot;nuvedb&quot;);
+log.info(&quot;数据库连接成功&quot;);
+DBCollection dbCollection = db.getCollection(&quot;rooms&quot;);
+DBCollection dbCollection2 = db.getCollection(&quot;tokens&quot;);
+log.info(&quot;集合连接成功&quot;);
+BasicDBObject room = new BasicDBObject();
+BasicDBObject token = new BasicDBObject();
+WriteResult result = dbCollection.remove(room);
+WriteResult result2 = dbCollection2.remove(token);
+
+
+
+//BasicDBObject bo2 = new BasicDBObject();
+//DBCursor dbUser =  dbCollection.find();
+//dbCollection.findOne();
+//bo.put(&quot;_id&quot;,333);
+//bo2.put(&quot;room&quot;,&quot;333&quot;);   
+//dbCollection.remove({_id:1,name:1})
+//dbCollection2.remove(bo2);
+//db.dbCollection.remove({});
+//bo.remove(bo);
+//dbCollection.remove({id:&quot;123&quot;},true);
+//WriteResult({ &quot;nRemoved&quot; : 1 })
+
+
+
+</stringProp>
+          <stringProp name="scriptLanguage">groovy</stringProp>
+        </JSR223Sampler>
+        <hashTree/>
+        <Arguments guiclass="ArgumentsPanel" testclass="Arguments" testname="用户定义的变量" enabled="false">
+          <collectionProp name="Arguments.arguments">
+            <elementProp name="IP" elementType="Argument">
+              <stringProp name="Argument.name">IP</stringProp>
+              <stringProp name="Argument.value">172.18.201.215</stringProp>
+              <stringProp name="Argument.metadata">=</stringProp>
+            </elementProp>
+            <elementProp name="Port" elementType="Argument">
+              <stringProp name="Argument.name">Port</stringProp>
+              <stringProp name="Argument.value">27017</stringProp>
+              <stringProp name="Argument.metadata">=</stringProp>
+            </elementProp>
+            <elementProp name="AuthDB" elementType="Argument">
+              <stringProp name="Argument.name">AuthDB</stringProp>
+              <stringProp name="Argument.value">nuvedb</stringProp>
+              <stringProp name="Argument.metadata">=</stringProp>
+            </elementProp>
+          </collectionProp>
+        </Arguments>
+        <hashTree/>
+      </hashTree>
+    </hashTree>
+  </hashTree>
+</jmeterTestPlan>
